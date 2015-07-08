@@ -15,11 +15,19 @@ p{
 	padding: 0;
 }
 
+body{
+	padding-left: 5px;
+}
+
 /*****************************
 COLORS
 ******************************/
 h1,h2{
 	color: #3f2f66
+}
+
+b{
+	color: #000;
 }
 
 body {
@@ -37,7 +45,7 @@ body {
 }
 
 /*****************************
-HEADING
+HEADINGS
 ******************************/
 #logo{
 	text-align: center;
@@ -52,6 +60,13 @@ header{
 	width: 100%; /*The header is a floating element, 
 	so we need to set an explicit width*/
 }
+
+#blog-header{
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	display: block;
+}
+
 h1{
 	font-family: 'Special Elite', cursive;
 	font-size: 2.5em;
@@ -69,7 +84,23 @@ h2{
 }
 
 h3{
-	margin: 0,0,0,0;
+	padding: 0;
+	padding-top: 1em;
+	margin: 0;
+	font-size: 1.5em;
+}
+
+h4{
+	margin: 0;
+	padding: 0;
+}
+
+.blog-title{
+	text-align: center;
+}
+
+.date{
+	text-align: center;
 }
 
 /*****************************
