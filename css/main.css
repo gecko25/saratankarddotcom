@@ -27,7 +27,7 @@ h1,h2{
 }
 
 b{
-	color: #000;
+	color: #616161;
 }
 
 body {
@@ -83,7 +83,8 @@ h2{
 	margin: -0.5em 0 1em 0;
 }
 
-h3{
+/*
+h3{ 
 	padding: 0;
 	padding-top: 1em;
 	margin: 0;
@@ -95,12 +96,31 @@ h4{
 	padding: 0;
 }
 
+*/
+
+/*****************************
+PAGE: BLOGS
+******************************/
+
 .blog-title{
 	text-align: center;
+	padding: 0;
+	padding-top: 1em;
+	margin: 0;
+	font-size: 1.5em;
+	color: #00001F;
 }
 
 .date{
 	text-align: center;
+	margin: 0;
+	padding: 0;
+	color: #00001F;
+}
+
+p.blog-entry {
+	margin-left: 12.5%;
+	margin-right: 12.5%;
 }
 
 /*****************************
