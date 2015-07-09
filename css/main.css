@@ -61,7 +61,7 @@ header{
 	so we need to set an explicit width*/
 }
 
-#blog-header{
+.blog-header{
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
 	display: block;
@@ -118,9 +118,17 @@ PAGE: BLOGS
 	color: #00001F;
 }
 
-p.blog-entry {
+.blog-entry {
 	margin-left: 12.5%;
 	margin-right: 12.5%;
+}
+
+p.blog-entry ul{
+	list-style: none;
+	}
+
+kbd{
+	font-size: .9em;
 }
 
 /*****************************

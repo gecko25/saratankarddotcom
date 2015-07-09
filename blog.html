@@ -30,6 +30,83 @@
 
 		
 		<section id="blog_entries">
+
+				<div class="blog-header">
+					<h3 class="blog-title">Setup a remote git repository on your dreamhost server</h3>
+					<h4 class="date">Tuesday, July 9 2015</h4>	
+				</div>
+				<div class="blog-entry"> 
+					This blog will detail the technical things I manage to learn-- big and small. So,
+					recently making the jump from windows to mac, one of the things I was excited to setup was 
+					a git repository for projects. I had my git on my local host all setup, my git linked to 
+					my github successfully, now I wanted to setup one to the actual server I am using for this
+					very website. I pretty much follow the instructions provided by git <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server"> here </a>. <br><br>
+
+					What we need to do is pretty simple.
+					<ul>
+						<li>Login to our remote dreamhost server via SSH</li>
+
+						<li>
+							Initialize a git repo on our remote server
+						</li>
+
+						<li>
+							Switch back to our local host and tell our local git about the remote server.
+						</li>
+					</ul>
+
+
+					<h3>Login to our remote dreamhost server via SSH</h3>
+						<a href="https://www.dreamhost.com/"> Dreamhost </a> (and I think other
+						server providing services?) provides a user for you, <em>but you must change it to have shell capabilities</em>-- this
+						will allow us to login via SSH with this user to for command line access. This saves us a lot of headache from having to deal with setting up SSH keys! Dreamhost has done everything regarding that for us.
+
+					<h3>Login to your server via ssh from terminal</h3>
+						<kbd>
+							$ ssh dreamhostuser@radagast.dreamhost.com <br>
+							dreamhostuser@radagast.dreamhost.com's password: <br>
+							$ cd /home/dreamhostuser/myprojectdir <br>
+							$ git init --bare </br> 
+							Initialized empty Git repository in /home/dreamhostuser/.git/ <br>
+							$ exit #exit connection, go back to local host..  <br>
+
+
+						</kbd>
+						<br>
+						<br>
+						We are creating an empty (bare) repository so that we can push our local stuff to.
+
+						<em> Note that this will add some stuff into your projectdir. </em> Not sure what all of it is,
+						something to do with git configuration..<br>
+						<kbd>
+							$ ls -ltr
+							drwxrwxr-x 4 dreamhostuser pg8539660     41 Jul  9 14:01 refs <br>
+							drwxrwxr-x 2 dreamhostuser pg8539660     28 Jul  9 14:01 info <br>
+							drwxrwxr-x 2 dreamhostuser pg8539660     96 Jul  9 14:01 hooks <br>
+							-rw-rw-r-- 1 dreamhostuser pg8539660     73 Jul  9 14:01 description <br>
+							-rw-rw-r-- 1 dreamhostuser pg8539660     66 Jul  9 14:01 config <br>
+							drwxrwxr-x 2 dreamhostuser pg8539660      6 Jul  9 14:01 branches <br>
+							-rw-rw-r-- 1 dreamhostuser pg8539660     23 Jul  9 14:01 HEAD <br>
+							drwxrwxr-x 4 dreamhostuser pg8539660     40 Jul  9 14:01 objects <br>
+						</kbd>
+
+
+
+					<h3>Create a git repo in your project folder</h3>
+
+					 
+
+
+					<h3>Useful commands in case of mess ups </h3>
+
+
+
+					
+				</div>  <!--End blog entry-->
+
+
+
+
 				<div id="blog-header">
 					<h3 class="blog-title">Women Who Code NYC Meetup -- Lightning Talks</h3>
 					<h4 class="date">Tuesday, July 7 2015</h4>	
@@ -52,22 +129,11 @@
 						js promises, <a href="http://es6-features.org/">ES6 features </a>, overview of Swift, <a href = "http://www.w3.org/WAI"/> web accessibility </a> --
 						and nontechnical alike. </br></br>
 
-						<b>One thing worth noting</b> were 2 vibrant ladies who have recently started the company <a href="http://monarq.co/">monarq</a>-- a friendship app for women. More interestingly, however, they also started a <a href = "http://shehacksnyc.monarq.co/"> women's hackathon </a> which I definitely intend on going on in October. <br><br>
+						<b>One thing worth noting</b> were 2 vibrant ladies who have recently started the company <a href="http://monarq.co/">monarq</a>-- a friendship app for women. Even more interestingly, they also started a <a href = "http://shehacksnyc.monarq.co/"> women's hackathon </a> which it think is fan-freaking-tastic. I definitely intend on going to in October. <br><br>
 
 						Another women's oriented world-wide collaboritive event that was discussed was <a href="http://womenseday.org"> Womens Entrepretneurship Day </a>.
 					</p>
 
-
-
-<!-- 			<div class="blog-entry">
-				<div id="blog-header">
-					<h3 class="blog-title">Some other topic</h3>
-					<h4 class="date">Date</h4>	
-				</div>
-					<p> 
-						abcdefghijkllmnopqrstuvwxyz
-					</p>
-			</div> -->
 		</section>
 		
 		<footer>
