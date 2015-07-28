@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html ng-app="firstapp">
+	<head>
+		<meta charset="utf-08">
+		<title> Sara Tankard </title>
+
+		<!-- CSS AND FONT IMPORTS-->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/normalize.css">
+		<link href='http://fonts.googleapis.com/css?family=Special+Elite|Noticia+Text' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/responsive.css">		
+	</head>
+
+	
+	<body>
+		<!-- JS file includes -->
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+
+
+
+
+		<header>
+			<div id= "logo">
+				<h1> Sara Tankard </h1>
+				<h2> Junior Developer</h2>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.html">About</a></li>
+					<li><a href="surfportfolio.html" >SurfFotos</a></li>
+					<li><a href="blog.html" class="selected">Blog</a></li>
+					<li><a href="contact.html">Contact</a></li>					
+				</ul>
+			</nav>
+		</header>
+
+
+		
+		<section id="blog_entries">
+				<article class="blog-entry">
+				<div id="blog-header">
+					<h3 class="blog-title">Women Who Code NYC Meetup -- Lightning Talks</h3>
+					<h4 class="date">Tuesday, July 7 2015</h4>	
+				</div>
+					<p class="blog-body"> 
+						Bienvenidos a Nueva York! I intend to keep most of my posts technical, but for my first one I want to write about the <em><a href = "http://www.meetup.com/WomenWhoCodeNYC/events/220650892/"> Women Who Code </a> </em> meetup I had the opportunity to attend yesterday. </br></br>
+
+						I saw 10 lovely ladies speak. It was my first event like this with all women, and I loved it. 
+						Of course diversity of all kinds of is necessary for great collaboration, but there is something very relaxing
+						about working with women, as a woman. One of the reasons I love programming so much is because
+						of the lack of discrimination and BS that, comparitively, seems to accompany other professions. 
+
+						In programming I often feel the premise tends to be, "Can you make it work? Great." No one cares
+						who you are, what you look like, where or even if you went to college, just prove you 
+						have the skills and enjoy making things work. Being surrounded by action-oriented women extends the attitude of minimizing BS. It inspires creation and acceptance --even encourgement-- of failure to dominate the culture of thinking. (<a href="http://mauryacouvares.blogspot.com/">Maurya Couvares</a>, the founder of <a href="https://scripted.org/"> ScriptEd </a>, even spoke about the importance of learning how to fail in the context of her company).
+
+						Its just nice to be with your peeps.  </br></br>
+
+						Speakers discussed the technical--
+						js promises, <a href="http://es6-features.org/">ES6 features </a>, overview of Swift, <a href = "http://www.w3.org/WAI"/> web accessibility </a> --
+						and nontechnical alike. </br></br>
+
+						<b>One thing worth noting</b> were 2 vibrant ladies who have recently started the company <a href="http://monarq.co/">monarq</a>-- a friendship app for women. Even more interestingly, they also started a <a href = "http://shehacksnyc.monarq.co/"> women's hackathon </a> which it think is fan-freaking-tastic. I definitely intend on going to in October. <br><br>
+
+						Another women's oriented world-wide collaboritive event that was discussed was <a href="http://womenseday.org"> Womens Entrepreneurship Day </a>.
+					</p>
+
+					<div class="comments-container">	
+						
+						<form name="commentForm" ng-controller="FeedbackController as feedbackCtrl"
+												 ng-submit="commentForm.$valid && feedbackCtrl.addComment(comment)" novalidate>
+							 
+							<!--inputs for commentform-->
+							 <input ng-model="comment.username" required
+							 	class="comment-info" 
+							 	id="username"
+							 	type="text" 
+							 	placeholder="Name"></input>
+							 <div id="name-error" class="error-message"></div>
+							 
+							 <textarea ng-model="comment.text"  required
+							 	class="comment-info" 
+							 	id="comment-box"
+							 	placeholder="Leave a comment..">
+							 </textarea> 
+							 <div id="text-area-error" class="error-message"></div>
+
+							 <input 
+							 	ng-click="validateForm()"
+							 	type="submit" 
+							 	class="comment-info"> 
+							 </input>
+
+							
+							 <!--live preview of comment -->
+							<p class="comment-timestamp"> {{comment.username}} </p>
+							<p class="comment"> {{comment.text}} </p>
+							<hr>
+
+							<!--display submitted comments-->
+						 <div ng-repeat="comment in feedbackCtrl.comments">
+							<p class="comment-timestamp"> {{comment.username}} on {{comment.timestamp}} </p>
+							<p class="comment"> {{comment.text}} </p>
+							<hr>
+						</div>
+
+						</form>
+
+					</div>	
+				</article>
+
+		</section>
+		
+		<footer>
+			<a href="http://facebook.com/saratankard">
+			<img src="img/facebook-wrap.png" class="social-icon">
+			</a>
+
+			<a href="http://twitter.com/saratanky">
+			<img src="img/twitter-wrap.png" class="social-icon">
+			</a>			
+			
+			<p> &copy; 2014 Sara Tankard</p>
+			<p> Web design inspired by the wonderful <a href="http://teamtreehouse.com/"> teamtreehouse.com </a></p>
+			<p> Last updated on July 7, 2015 </p>
+		</footer>
+
+
+
+
+	</body>
+
+
+
+
+		<script type="text/javascript" src="js/app.js"></script>
+
+
+
+</html>

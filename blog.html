@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="firstapp">
 	<head>
 		<meta charset="utf-08">
 		<title> Sara Tankard </title>
 
+		<!-- CSS AND FONT IMPORTS-->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link href='http://fonts.googleapis.com/css?family=Special+Elite|Noticia+Text' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/responsive.css">
-		
+		<link rel="stylesheet" href="css/responsive.css">		
 	</head>
 
 	
 	<body>
+		<!-- JS file includes -->
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+
+
+
+
 		<header>
 			<div id= "logo">
 				<h1> Sara Tankard </h1>
@@ -28,90 +37,127 @@
 			</nav>
 		</header>
 
+
 		
 		<section id="blog_entries">
-
-				<div class="blog-header">
-					<h3 class="blog-title">Setup a remote git repository on your dreamhost server</h3>
-					<h4 class="date">Tuesday, July 9 2015</h4>	
+				<article class="blog-entry">
+				<div id="blog-header">
+					<h3 class="blog-title">learnyounode, Prototypical Inheritance, modules</h3>
+					<h4 class="date">Tuesday, July 28 2015</h4>	
 				</div>
-				<div class="blog-entry"> 
-					This blog will detail the technical things I manage to learn-- big and small. So,
-					recently making the jump from windows to mac, one of the things I was excited to setup was 
-					a git repository for projects. I had my git on my local host all setup, my git linked to 
-					my github successfully, now I wanted to setup one to the actual server I am using for this
-					very website. I pretty much follow the instructions provided by git <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server"> here </a>. <br><br>
-
-					What we need to do is pretty simple.
-					<ul>
-						<li>Login to our remote dreamhost server via SSH</li>
-
-						<li>
-							Initialize a git repo on our remote server
-						</li>
-
-						<li>
-							Switch back to our local host and tell our local git about the remote server.
-						</li>
-					</ul>
+				<p class="blog-body">
 
 
-					<h3>Login to our remote dreamhost server via SSH</h3>
-						<a href="https://www.dreamhost.com/"> Dreamhost </a> (and I think other
-						server providing services?) provides a user for you, <em>but you must change it to have shell capabilities</em>-- this
-						will allow us to login via SSH with this user to for command line access. This saves us a lot of headache from having to deal with setting up SSH keys! Dreamhost has done everything regarding that for us.
+					While I am new to JS, it is quite apparent that prototypical inheritance 
+					is a tricky subject. I have been reading Kyle Simpson's <em> You Don't Know 
+					Javascript </em> and watching his <a href='http://www.pluralsight.com/courses/advanced-javascript'> talks on pluralsight </a> which have really made things clear for me.
+					He talks about this subject in terms of behavioral delegation 
+					rather than traditional class-inheritance, and object-linkages rather than OOP. 
+					I won't go into too much detail about that here, but I highly recommend it.
 
-					<h3>Login to your server via ssh from terminal</h3>
-						<kbd>
-							$ ssh dreamhostuser@radagast.dreamhost.com <br>
-							dreamhostuser@radagast.dreamhost.com's password: <br>
-							$ cd /home/dreamhostuser/myprojectdir <br>
-							$ git init --bare </br> 
-							Initialized empty Git repository in /home/dreamhostuser/.git/ <br>
-							$ exit #exit connection, go back to local host..  <br>
+					<br><br>
+					While working on <a href='http://nodeschool.io/'> learnyounode modules </a> I wanted to understand the linkage of modules that I directly and indirectly working with. 
+					<br><br>
+					For example, in the httpclient exercise we work directly with the 
+					<a href="https://nodejs.org/api/http.html"> http module </a> in order
+					to (1) make a url request, (2) receive a response object and then (3) collect data
+					from this response object. The code to this is fairly short and sweet: <br><br>
 
+					<kbd>
+						var http = require('http'); </br><br>
 
-						</kbd>
+						http.get(url, function (response) { </br>
+						  response.setEncoding('utf8') </br>
+						  		response.on('data', function(data) {			
+  									console.log(data);
+								}); </br>
+						  response.on('error', console.error) </br>
+						})
+					</kbd>
+					<br><br>
+					So we use the http module to make a get request and the callback function
+					returns a response object. That response object will emit data events which we
+					will capture and print to console. <br>
+					We use a setEncoding method so that we get back actual strings instead of a buffer objects.
+					<br><br>
+					To fully understand whats going on here a few things should be explained.
+					<ol>
+						<li> <a href= 'https://nodejs.org/api/events.html#events_emitter_on_event_listener'>Some objects in node emit events. </a> <em>(examples: fs.readStream emits an event when the file is opened, net.Server emits an event each time a peer connects to it)  </em> </li>
 						<br>
+
+						<li> All objects that emit events are instances of events.EventEmitter. </li><br>
+
+						<li> <a href='https://nodejs.org/api/stream.html#stream_stream'> A stream is an "interface" in node </a> --- If you were to ask Kyle Simpson,
+							I think he would debate this is incorrect terminlogy and better
+							to say a stream object has linkages from many objects </li>
 						<br>
-						We are creating an empty (bare) repository so that we can push our local stuff to.
+						
 
-						<em> Note that this will add some stuff into your projectdir. </em> Not sure what all of it is,
-						something to do with git configuration..<br>
-						<kbd>
-							$ ls -ltr
-							drwxrwxr-x 4 dreamhostuser pg8539660     41 Jul  9 14:01 refs <br>
-							drwxrwxr-x 2 dreamhostuser pg8539660     28 Jul  9 14:01 info <br>
-							drwxrwxr-x 2 dreamhostuser pg8539660     96 Jul  9 14:01 hooks <br>
-							-rw-rw-r-- 1 dreamhostuser pg8539660     73 Jul  9 14:01 description <br>
-							-rw-rw-r-- 1 dreamhostuser pg8539660     66 Jul  9 14:01 config <br>
-							drwxrwxr-x 2 dreamhostuser pg8539660      6 Jul  9 14:01 branches <br>
-							-rw-rw-r-- 1 dreamhostuser pg8539660     23 Jul  9 14:01 HEAD <br>
-							drwxrwxr-x 4 dreamhostuser pg8539660     40 Jul  9 14:01 objects <br>
-						</kbd>
+						<li> <a href='https://nodejs.org/api/stream.html#stream_event_data'> Stream objects emit events </a>  && thus links to events.EventEmitter</li>
+						<br>
+
+						<li>An http response to a server is a stream object (it "implements"/links 
+							to the stream object</li>
+					</ol>
+
+				</hr>	
+				<h2> So.. my question:  What does the prototype inheritance diagram look like here? </h2>
+				</hr>
+				
+				If I use the .__proto__ method on some of my objects to try and figure this out but it left me even more confused!  
+				<br> For example, if I go up 1 link on the prototype chain.. <br>
+				<kbd> console.log(response.__proto__); </kbd> <br>
+				<kbd> { setTimeout: [Function], </br>
+  						  read: [Function], <br>
+						  _read: [Function], <br>
+						  destroy: [Function], <br>
+						  _addHeaderLines: [Function], <br>
+						  _addHeaderLine: [Function], <br>
+						  _dump: [Function] }</kbd> <br>
+
+				If I go 2 links up the prototype chain.. I get somewhere that makes sense to me: the Stream object**. <br> <br>
+				<kbd> console.log(response.__proto__.__proto__); </kbd> <br> 
+				<kbd>{ push: [Function], <br>
+					  unshift: [Function], <br>
+					  isPaused: [Function], <br>
+					  setEncoding: [Function], <br>
+					  read: [Function], <br>
+					  _read: [Function], <br>
+					  pipe: [Function], <br>
+					  unpipe: [Function], <br>
+					  on: [Function], <br>
+					  addListener: [Function], <br>
+					  resume: [Function], <br>
+					  pause: [Function],<br>
+					  wrap: [Function] } </kbd>
+				<br><br>
+				If I go up 3 links. I am expecting to see the events.EventEmitter object (see #4).
+				But instead, more confusion: <br><br>
+
+				<kbd> console.log(response.__proto__.__proto__.__proto__); </kbd> <br>
+				<kbd> { pipe: [Function] } <br></kbd> 
+				<br>
+				**The only way I know this is a stream object is because I read
+				the API and the steam object has all these methods. Is there not 
+				a better way??<br>
 
 
 
-					<h3>Create a git repo in your project folder</h3>
 
-					 
-
-
-					<h3>Useful commands in case of mess ups </h3>
-
-
-
-					
-				</div>  <!--End blog entry-->
+ 
+				</p>
+				</article
 
 
 
 
+
+				<article class="blog-entry">
 				<div id="blog-header">
 					<h3 class="blog-title">Women Who Code NYC Meetup -- Lightning Talks</h3>
 					<h4 class="date">Tuesday, July 7 2015</h4>	
 				</div>
-					<p class="blog-entry"> 
+					<p class="blog-body"> 
 						Bienvenidos a Nueva York! I intend to keep most of my posts technical, but for my first one I want to write about the <em><a href = "http://www.meetup.com/WomenWhoCodeNYC/events/220650892/"> Women Who Code </a> </em> meetup I had the opportunity to attend yesterday. </br></br>
 
 						I saw 10 lovely ladies speak. It was my first event like this with all women, and I loved it. 
@@ -131,8 +177,13 @@
 
 						<b>One thing worth noting</b> were 2 vibrant ladies who have recently started the company <a href="http://monarq.co/">monarq</a>-- a friendship app for women. Even more interestingly, they also started a <a href = "http://shehacksnyc.monarq.co/"> women's hackathon </a> which it think is fan-freaking-tastic. I definitely intend on going to in October. <br><br>
 
-						Another women's oriented world-wide collaboritive event that was discussed was <a href="http://womenseday.org"> Womens Entrepretneurship Day </a>.
+						Another women's oriented world-wide collaboritive event that was discussed was <a href="http://womenseday.org"> Womens Entrepreneurship Day </a>.
 					</p>
+
+					<div class="comments-container">	
+						
+					</div>	
+				</article>
 
 		</section>
 		
@@ -149,12 +200,16 @@
 			<p> Web design inspired by the wonderful <a href="http://teamtreehouse.com/"> teamtreehouse.com </a></p>
 			<p> Last updated on July 7, 2015 </p>
 		</footer>
+
+
+
+
 	</body>
 
 
 
 
-
+		<script type="text/javascript" src="js/app.js"></script>
 
 
 
