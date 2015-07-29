@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link href='http://fonts.googleapis.com/css?family=Special+Elite|Noticia+Text' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/responsive.css">		
 	</head>
@@ -40,28 +41,59 @@
 
 		
 		<section id="blog_entries">
-				<article class="blog-entry">
+
+			<article class="blog-entry">
 				<div id="blog-header">
-					<h3 class="blog-title">learnyounode, Prototypical Inheritance, modules</h3>
-					<h4 class="date">Tuesday, July 28 2015</h4>	
+					<h3 class="blog-title">Asynchronous Processing & Callback functions</h3>
+					<h4 class="date">Wednesday, July 29 2015</h4>	
 				</div>
 				<p class="blog-body">
+					This is my understanding asynchronous processing. <br><br>
 
+					Lets consider a boss.
+					The boss has 20 tasks to do today. Some tasks
+					are easy and quick, others are more involved and require errands, communicating
+					with other people. Not all tasks are created equally. So he completes task one. Easy. Task two. Easy. But then he gets to task three. Task three is complicated and should be
+					broken into 2 parts: part a, and part b. 
 
-					While I am new to JS, it is quite apparent that prototypical inheritance 
-					is a tricky subject. I have been reading Kyle Simpson's <em> You Don't Know 
-					Javascript </em> and watching his <a href='http://www.pluralsight.com/courses/advanced-javascript'> talks on pluralsight </a> which have really made things clear for me.
-					He talks about this subject in terms of behavioral delegation 
-					rather than traditional class-inheritance, and object-linkages rather than OOP. 
-					I won't go into too much detail about that here, but I highly recommend it.
+					<div class="quote"> Hmmm, this task is complicated. Brian usually does 
+						part A for me and then hands over the result so I can do part B.
+						But Brian takes soooooooooooooo long to do part A. I'm never going to get to task 4
+						if I wait for him to finish.
 
-					<br><br>
-					While working on <a href='http://nodeschool.io/'> learnyounode modules </a> I wanted to understand the linkage of modules that I directly and indirectly working with. 
-					<br><br>
-					For example, in the httpclient exercise we work directly with the 
-					<a href="https://nodejs.org/api/http.html"> http module </a> in order
-					to (1) make a url request, (2) receive a response object and then (3) collect data
-					from this response object. The code to this is fairly short and sweet: <br><br>
+					</div> 
+
+					
+
+					What to do. What to do. 
+
+					
+
+					<div class="quote"> 
+						Well, I'll just give Brian the instructions for how to do part B so he can do it himself and I'll carry on to task 4. Perfect!  
+					</div> 
+
+					So the boss tells Brian to do task 3A, like normal, but also gives him the instructions for what to do with he is done. The boss carries on to task 4. He does 10 more tasks until task 15 when he has the same dilemma....
+
+					<div class="quote"> 
+						 No problem, Casey usually handles tasks like this. I'll
+						 let her handle it, like normal. But this time I'll also pass her the instructions for what to do when she's done. 
+					</div> 
+
+					So he does, and carries on.
+					He finishes all 20 tasks, and then a few moments later Brian walks in with the results 
+					for task 3, and after that Casey with results from task 15.
+
+					<hr>
+
+					This is how I understand asynchronous processing. And the important part in this
+					analogy is the <em> passing of instructions </em>. The passing of instructions
+					is the callback function. The boss says to Brian-- in this analogy Brian is a method
+					in another module-- hey Brian, can you go and calculate all that stuff for me like you 
+					would normally, but also I am going to give you the instructions for what to do after
+					so I don't have to wait for you to finish your calculations. Thanks.  <br> <br>
+
+					So if we look at the below code: <br>
 
 					<kbd>
 						var http = require('http'); </br><br>
@@ -73,80 +105,44 @@
 								}); </br>
 						  response.on('error', console.error) </br>
 						})
-					</kbd>
-					<br><br>
-					So we use the http module to make a get request and the callback function
-					returns a response object. That response object will emit data events which we
-					will capture and print to console. <br>
-					We use a setEncoding method so that we get back actual strings instead of a buffer objects.
-					<br><br>
-					To fully understand whats going on here a few things should be explained.
-					<ol>
-						<li> <a href= 'https://nodejs.org/api/events.html#events_emitter_on_event_listener'>Some objects in node emit events. </a> <em>(examples: fs.readStream emits an event when the file is opened, net.Server emits an event each time a peer connects to it)  </em> </li>
-						<br>
+					</kbd> <br> <br>
 
-						<li> All objects that emit events are instances of events.EventEmitter. </li><br>
-
-						<li> <a href='https://nodejs.org/api/stream.html#stream_stream'> A stream is an "interface" in node </a> --- If you were to ask Kyle Simpson,
-							I think he would debate this is incorrect terminlogy and better
-							to say a stream object has linkages from many objects </li>
-						<br>
+					This is saying:
+					<div class="quote">
+						"Hey you! http module! Can you make a get request with this url (<kbd> http.get(url, ..) </kbd>) and get a response for 
+						me? Oh also, I don't really have time to wait for you to get the response.... so here's
+						the instructions for what to do with that response object-- the function you
+						can ..<em>call back</em>.. when you get that response object: <br>
+					</div> 
 						
+						<kbd>
+							( .. function (response) {<br> 
+						/*do some stuff with response*/ <br> 
+						});. 
+						</kbd><br>
 
-						<li> <a href='https://nodejs.org/api/stream.html#stream_event_data'> Stream objects emit events </a>  && thus links to events.EventEmitter</li>
-						<br>
-
-						<li>An http response to a server is a stream object (it "implements"/links 
-							to the stream object</li>
-					</ol>
-
-				</hr>	
-				<h2> So.. my question:  What does the prototype inheritance diagram look like here? </h2>
-				</hr>
-				
-				If I use the .__proto__ method on some of my objects to try and figure this out but it left me even more confused!  
-				<br> For example, if I go up 1 link on the prototype chain.. <br>
-				<kbd> console.log(response.__proto__); </kbd> <br>
-				<kbd> { setTimeout: [Function], </br>
-  						  read: [Function], <br>
-						  _read: [Function], <br>
-						  destroy: [Function], <br>
-						  _addHeaderLines: [Function], <br>
-						  _addHeaderLine: [Function], <br>
-						  _dump: [Function] }</kbd> <br>
-
-				If I go 2 links up the prototype chain.. I get somewhere that makes sense to me: the Stream object**. <br> <br>
-				<kbd> console.log(response.__proto__.__proto__); </kbd> <br> 
-				<kbd>{ push: [Function], <br>
-					  unshift: [Function], <br>
-					  isPaused: [Function], <br>
-					  setEncoding: [Function], <br>
-					  read: [Function], <br>
-					  _read: [Function], <br>
-					  pipe: [Function], <br>
-					  unpipe: [Function], <br>
-					  on: [Function], <br>
-					  addListener: [Function], <br>
-					  resume: [Function], <br>
-					  pause: [Function],<br>
-					  wrap: [Function] } </kbd>
-				<br><br>
-				If I go up 3 links. I am expecting to see the events.EventEmitter object (see #4).
-				But instead, more confusion: <br><br>
-
-				<kbd> console.log(response.__proto__.__proto__.__proto__); </kbd> <br>
-				<kbd> { pipe: [Function] } <br></kbd> 
-				<br>
-				**The only way I know this is a stream object is because I read
-				the API and the steam object has all these methods. Is there not 
-				a better way??<br>
+					<br> 
 
 
+					If starting out it might be easier to stomach the code this way: <br>
+					<br>
+					<kbd>
+						var foo = function (response) { <br>
+					 /*do some stuff with response*/ <br>
+					} </br>
+					http.get(url, foo); </kbd><br>
+					<br>
+		
 
-
+					Of course there are some obvious questions. What happens when the tasks are dependent 
+					on eachother? Do we just shove everything in the callback? What about nested
+					callbacks? How do we ensure that Brian & Casey complete those instructions? (I smell
+					promises...)
+					<hr>
  
 				</p>
-				</article
+				</article>
+
 
 
 
@@ -198,7 +194,7 @@
 			
 			<p> &copy; 2014 Sara Tankard</p>
 			<p> Web design inspired by the wonderful <a href="http://teamtreehouse.com/"> teamtreehouse.com </a></p>
-			<p> Last updated on July 7, 2015 </p>
+			<p> Last updated on July 29, 2015 </p>
 		</footer>
 
 

@@ -19,11 +19,19 @@ body{
 	padding-left: 5px;
 }
 
+.quote{
+	color: #3f2f66;
+	font-family: 'Fjalla One', sans-serif;
+	margin: 1.5em 0;
+}
+
 /*****************************
 COLORS
 ******************************/
 h1,h2{
-	color: #3f2f66
+	color: #3f2f66;
+	font-size: 2em;
+
 }
 
 b{
@@ -56,9 +64,46 @@ HEADINGS
 header{
 	float:left;
 	margin: 0,0, 0, 0;
-	padding: 5px 0 0 0;
+	padding: 10px 0;
 	width: 100%; /*The header is a floating element, 
 	so we need to set an explicit width*/
+}
+
+h1{
+	font-family: 'Special Elite', cursive;
+	font-size: 3.5em;
+	line-height: 0.75em;
+	margin: 0.5em 0 0 0;
+	
+}
+
+h2{
+	font-family: 'Noticia Text', serif;
+	font-size: 1em;
+	text-align: center;	
+	padding: 0.5em 0 0.5em 0;
+	margin: -0.5em 0 1em 0;
+}
+
+@media (max-width:500px){
+	/*only apply for browser from 0-maxwidth of 500px*/
+	#logo{
+		font-size: 1.6em;
+	}
+
+	nav ul li{
+		display:block;
+		padding: 5px;
+		font-size:1.4em;
+	}
+}
+
+/*****************************
+PAGE: BLOGS
+******************************/
+
+#blog-entries{
+	clear: left;
 }
 
 .blog-header{
@@ -67,40 +112,6 @@ header{
 	display: block;
 }
 
-h1{
-	font-family: 'Special Elite', cursive;
-	font-size: 2.5em;
-	line-height: 0.75em;
-	margin: 0.5em 0 0 0;
-	
-}
-
-h2{
-	font-family: 'Noticia Text', serif;
-	font-size: 0.75em;
-	text-align: center;	
-	padding: 0.5em 0 0.5em 0;
-	margin: -0.5em 0 1em 0;
-}
-
-/*
-h3{ 
-	padding: 0;
-	padding-top: 1em;
-	margin: 0;
-	font-size: 1.5em;
-}
-
-h4{
-	margin: 0;
-	padding: 0;
-}
-
-*/
-
-/*****************************
-PAGE: BLOGS
-******************************/
 
 .blog-title{
 	text-align: center;
@@ -109,6 +120,7 @@ PAGE: BLOGS
 	margin: 0;
 	font-size: 1.5em;
 	color: #00001F;
+	line-height: 1.5em;
 }
 
 .date{
@@ -119,16 +131,63 @@ PAGE: BLOGS
 }
 
 .blog-entry {
-	margin-left: 12.5%;
-	margin-right: 12.5%;
+	margin: 0 auto; /* Good trick! Top margin is 0, the left-right margin automatically adjusts to page width */
+	padding: 0 20px;
+	max-width: 750px;
 }
 
-p.blog-entry ul{
+ul{
 	list-style: none;
 	}
 
 kbd{
 	font-size: .9em;
+}
+
+/*comments stuff*/
+.comments-container{
+	margin: 30px 0;
+}
+
+textarea.comment-info{
+	width: 100%;
+	height: 75px;
+	margin: 10px 0 0 0;
+	max-width: 500px;
+	font-size: small;
+	vertical-align: top;
+	display:block;
+	font-family: 'Noticia Text', serif;
+}
+
+input.comment-info {
+	font-family: 'Noticia Text', serif;
+	width: 100%;
+	max-width: 500px;
+}
+
+input.comment-info[type="submit"] {
+	width: 60px;
+	height: 25px;
+	margin: 5px 0;
+}
+
+.error-message{
+	font-size: small;
+	color: red;
+}
+/*.ng-invalid{   note there cannot be a space between these classes in order to apply AND condition 
+	border-color: #FA787E;
+	} /*the user has attempted input (dirty) but the input is still invaild -- turn border red*/
+
+p.comment{
+	color: black;
+	font-family: Serif;
+
+}
+
+.error-message{
+	text-size: small;
 }
 
 /*****************************
