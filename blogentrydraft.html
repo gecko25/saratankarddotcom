@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html ng-app="firstapp">
+	<head>
+		<meta charset="utf-08">
+		<title> Sara Tankard </title>
+
+		<!-- CSS AND FONT IMPORTS-->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/normalize.css">
+		<link href='http://fonts.googleapis.com/css?family=Special+Elite|Noticia+Text' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/responsive.css">		
+	</head>
+
+	
+	<body>
+		<!-- JS file includes -->
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+
+
+
+
+		<header>
+			<div id= "logo">
+				<h1> Sara Tankard </h1>
+				<h2> Junior Developer</h2>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.html">About</a></li>
+					<li><a href="surfportfolio.html" >SurfFotos</a></li>
+					<li><a href="blog.html" class="selected">Blog</a></li>
+					<li><a href="contact.html">Contact</a></li>					
+				</ul>
+			</nav>
+		</header>
+
+
+		
+		<section id="blog_entries">
+
+			<article class="blog-entry">
+				<div id="blog-header">
+					<h3 class="blog-title">module "inheritance", learnyounode, event emitter</h3>
+					<h4 class="date">Saturday, August 1 2015</h4>	
+				</div>
+				<p class="blog-body">
+
+
+					While I am new to JS, it is quite apparent that prototypical inheritance 
+					is a tricky subject. I have been reading Kyle Simpson's <em> You Don't Know 
+					Javascript </em> and watching his <a href='http://www.pluralsight.com/courses/advanced-javascript'> talks on pluralsight </a> which have really made things clear for me.
+					He talks about this subject in terms of behavioral delegation 
+					rather than traditional class-inheritance, and object-linkages rather than OOP. 
+					I won't go into too much detail about that here, but I highly recommend it.
+
+					<br><br>
+					While working on <a href='http://nodeschool.io/'> learnyounode modules </a> I wanted to understand the linkage of modules that I directly and indirectly working with. 
+					<br><br>
+					For example, in the httpclient exercise we work directly with the 
+					<a href="https://nodejs.org/api/http.html"> http module </a> in order
+					to (1) make a url request, (2) receive a response object and then (3) collect data
+					from this response object. The code to this is fairly short and sweet: <br><br>
+
+					<kbd>
+						var http = require('http'); </br><br>
+
+						http.get(url, function (response) { </br>
+						  response.setEncoding('utf8') </br>
+						  		response.on('data', function(data) {			
+  									console.log(data);
+								}); </br>
+						  response.on('error', console.error) </br>
+						})
+					</kbd>
+					<br><br>
+					So we use the http module to make a get request and the callback function
+					returns a response object. That response object will emit data events which we
+					will capture and print to console. <br>
+					We use a setEncoding method so that we get back actual strings instead of a buffer objects.
+					<br><br>
+					To fully understand whats going on here a few things should be explained.
+					<ol>
+						<li> <a href= 'https://nodejs.org/api/events.html#events_events'>Some objects in node emit events. </a> <em>(examples: fs.readStream emits an event when the file is opened, net.Server emits an event each time a peer connects to it)  </em> </li>
+						<br>
+
+						<li> <a href= 'https://nodejs.org/api/events.html#events_events'> All objects that emit events are instances of events.EventEmitter. </a> </li><br>
+
+						<li> <a href='https://nodejs.org/api/stream.html#stream_stream'> A stream is 
+							an abstract "interface" in node </a> --- If you were to ask Kyle Simpson,
+							I think he would debate this is incorrect terminlogy and better
+							to say a stream object has linkages from many objects </li>
+						<br>
+						
+
+						<li> Stream objects emit events </a>  && thus links to events.EventEmitter. 
+							(<a href='https://nodejs.org/api/stream.html#stream_stream'> All streams
+							are instances of EventEmitter) </a>
+						</li>
+						<br>
+
+						<li> <a href='https://nodejs.org/api/http.html#http_class_http_serverresponse'> An http response object from the server is a stream object. </a> 
+							( it "implements" the <a href='https://nodejs.org/api/stream.html#stream_class_stream_writable'> writeable stream object</a>)</li>
+
+							
+					</ol>
+
+				</hr>	
+				<br>
+				<h2> So.. What does the prototype inheritance diagram look like here?! </h2>
+				<br>
+				</hr>
+
+				Based on the points above I would expect the diagram to look something like this: <br>
+				<img src="img/response-obj-inheritance.png"> <br>
+
+				BUT
+
+				If I use the .__proto__ method on some of my objects to try and figure this out but it left me even more confused!  
+				<br> For example, if I go up 1 link on the prototype chain.. <br>
+				<kbd> console.log(response.__proto__); </kbd> <br>
+				<kbd> { setTimeout: [Function], </br>
+  						  read: [Function], <br>
+						  _read: [Function], <br>
+						  destroy: [Function], <br>
+						  _addHeaderLines: [Function], <br>
+						  _addHeaderLine: [Function], <br>
+						  _dump: [Function] }</kbd> <br>
+
+				If I go 2 links up the prototype chain.. I get somewhere that makes sense to me: the Stream object**. <br> <br>
+				<kbd> console.log(response.__proto__.__proto__); </kbd> <br> 
+				<kbd>{ push: [Function], <br>
+					  unshift: [Function], <br>
+					  isPaused: [Function], <br>
+					  setEncoding: [Function], <br>
+					  read: [Function], <br>
+					  _read: [Function], <br>
+					  pipe: [Function], <br>
+					  unpipe: [Function], <br>
+					  on: [Function], <br>
+					  addListener: [Function], <br>
+					  resume: [Function], <br>
+					  pause: [Function],<br>
+					  wrap: [Function] } </kbd>
+				<br><br>
+				If I go up 3 links. I am expecting to see the events.EventEmitter object (see #4).
+				But instead, more confusion: <br><br>
+
+				<kbd> console.log(response.__proto__.__proto__.__proto__); </kbd> <br>
+				<kbd> { pipe: [Function] } <br></kbd> 
+				<br>
+				<br>
+
+				So... the inheritance diagram actually looks something like..<br>
+				<img src="img/response-obj-inheritance-actual.png"><br>
+				????????
+				<br>
+				<br>
+
+
+
+
+
+
+
+				**The only way I know this is a stream object is because I read
+				the API and the steam object has all these methods. Is there not 
+				a better way??<br>
+
+
+
+
+ 
+				</p>
+				</article>
+
+		</section>
+		
+		<footer>
+			<a href="http://facebook.com/saratankard">
+			<img src="img/facebook-wrap.png" class="social-icon">
+			</a>
+
+			<a href="http://twitter.com/saratanky">
+			<img src="img/twitter-wrap.png" class="social-icon">
+			</a>			
+			
+			<p> &copy; 2014 Sara Tankard</p>
+			<p> Web design inspired by the wonderful <a href="http://teamtreehouse.com/"> teamtreehouse.com </a></p>
+			<p> Last updated on July 29, 2015 </p>
+		</footer>
+
+
+
+
+	</body>
+
+
+
+
+		<script type="text/javascript" src="js/app.js"></script>
+
+
+
+</html>
