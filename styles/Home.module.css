@@ -9,6 +9,10 @@
   height: 90vh;
 }
 
+.main p {
+  font-size: 2rem;
+}
+
 .footer {
   width: 100%;
   text-align: center;
@@ -16,4 +20,8 @@
 
 .footer a {
   padding: 10px;
+}
+
+.img {
+  width: 30px;
 }
