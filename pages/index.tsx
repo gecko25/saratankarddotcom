@@ -12,15 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header></header>
-
-      <main className={styles.main}>
-        <p>
-          In the process of moving my personal website over to next.js/vercel.
-        </p>
-      </main>
-
-      <footer className={styles.footer}>
+      <header className={styles.header}>
         <a href="https://github.com/gecko25" target="_blank" rel="noreferrer">
           <Image src="/github.png" width={40} height={40} alt="Sara's Github" />
         </a>
@@ -43,7 +35,15 @@ const Home: NextPage = () => {
         >
           <Image src="/resume.png" width={40} height={40} alt="Sara's Resume" />
         </a>
-      </footer>
+      </header>
+
+      <main className={styles.main}>
+        <p>
+          In the process of moving my personal website over to next.js/vercel.
+        </p>
+      </main>
+
+      <footer className={styles.footer}></footer>
     </section>
   );
 };
