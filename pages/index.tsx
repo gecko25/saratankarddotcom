@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -18,9 +19,15 @@ const Home: NextPage = () => {
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://github.com/gecko25" target="_blank"><img src="github.png" width={30} /></a>
-        <a href="https://www.linkedin.com/in/saratankard/" target="_blank"><img src="linkedin.png" width={30} /></a>
-        <a href="https://docs.google.com/document/d/1LMMeQQR8oJd_hs37OI3r07F-oNvlfHd9be4ScKTSgPk/edit?usp=sharing" target="_blank"><img src="resume.png" width={30} /></a>
+        <a href="https://github.com/gecko25" target="_blank" rel="noreferrer">
+          <Image src="github.png" width={30} alt="Sara's Github"/>
+        </a>
+        <a href="https://www.linkedin.com/in/saratankard/" target="_blank" rel="noreferrer">
+          <Image src="linkedin.png" width={30} alt="Sara's LinkedIn" />
+        </a>
+        <a href="https://docs.google.com/document/d/1LMMeQQR8oJd_hs37OI3r07F-oNvlfHd9be4ScKTSgPk/edit?usp=sharing" target="_blank" rel="noreferrer">
+          <Image src="resume.png" width={30} alt="Sara's Resume" />
+        </a>
         
       </footer>
     </section>
