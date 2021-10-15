@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
-import { Fragment } from "react";
+import SSRProvider from "react-bootstrap/SSRProvider";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 /* Components */
 import { Header, Footer } from "@components/index";
@@ -9,11 +10,13 @@ import "@styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Fragment>
+    <SSRProvider>
       <Header />
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
       <Footer />
-    </Fragment>
+    </SSRProvider>
   );
 }
 export default MyApp;

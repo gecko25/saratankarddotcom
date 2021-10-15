@@ -1,32 +1,39 @@
 import type { NextPage } from "next";
+import Link from "next/link";
+
+import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
+import Nav from "react-bootstrap/Nav";
+
 import styles from "./Header.module.scss";
 
 const Header: NextPage = () => {
   return (
     <header className={styles.header}>
-      <a href="https://github.com/gecko25" target="_blank" rel="noreferrer">
-        <Image src="/github.png" width={40} height={40} alt="Sara's Github" />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/saratankard/"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Image
-          src="/linkedin.png"
-          width={40}
-          height={40}
-          alt="Sara's LinkedIn"
-        />
-      </a>
-      <a
-        href="https://docs.google.com/document/d/1LMMeQQR8oJd_hs37OI3r07F-oNvlfHd9be4ScKTSgPk/edit?usp=sharing"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Image src="/resume.png" width={40} height={40} alt="Sara's Resume" />
-      </a>
+      <Navbar className={styles.Navbar} bg="#1c1c36" expand="lg" variant="dark">
+        <Link href="/" passHref>
+          <Navbar.Brand>
+            <Image
+              src="/logo.png"
+              width={80}
+              height={80}
+              alt="Sara Tankard - Front End Developer"
+            />
+            {/* https://make.freemonogrammaker.com/circle-monogram-with-2-initials/ */}
+          </Navbar.Brand>
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className={styles.navcontainer}>
+            <Link href="/portfolio" passHref>
+              <Nav.Link>Portfolio</Nav.Link>
+            </Link>
+            <Link href="/about" passHref>
+              <Nav.Link>About Me</Nav.Link>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </header>
   );
 };

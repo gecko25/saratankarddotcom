@@ -1,13 +1,30 @@
-.header {
+.navcontainer {
   width: 100%;
-  text-align: right;
-  padding: 20px;
+  margin-top: 10px;
+  @media #{$desktop} {
+    justify-content: flex-end;
+  }
 }
 
-.header a {
-  padding: 10px;
+.navcontainer a {
+  @media #{$desktop} {
+    color: white !important;
+  }
+  @media #{$tablet}, #{$mobile} {
+    color: #9999a3 !important;
+    border-bottom: #9999a3 1px solid;
+    width: 100%;
+    padding-left: 5px !important;
+    &:hover {
+      color: white !important;
+      background-color: #9999a3;
+      text-decoration: none !important;
+    }
+  }
 }
 
-.img {
-  width: 30px;
+.Navbar {
+  * {
+    color: white;
+  }
 }

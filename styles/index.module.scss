@@ -1,12 +1,6 @@
-.main {
+.index {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
   padding: 25px;
-}
-
-.main p {
-  font-size: 2rem;
-  font-family: #{$AvenirNext-DemiBold};
 }

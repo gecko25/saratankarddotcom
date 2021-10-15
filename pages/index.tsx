@@ -13,11 +13,11 @@ const Home: NextPage = () => {
         <meta name="description" content="Sara Tankards personal website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <section className={styles.index}>
         <p>
           In the process of moving my personal website over to next.js/vercel.
         </p>
-      </main>
+      </section>
     </Fragment>
   );
 };
