@@ -24,7 +24,9 @@ const PortfolioItem: NextPage<Props> = ({
   github,
 }) => (
   <div className={styles.container}>
-    <h1>{title}</h1>
+    <a href={link}>
+      <h1>{title}</h1>
+    </a>
     <div className={styles.body}>
       <a href={link} target="_blank" rel="noreferrer">
         <Image
@@ -38,15 +40,19 @@ const PortfolioItem: NextPage<Props> = ({
       <div className={styles.copy}>{children}</div>
     </div>
 
-    <ul>
+    <ul style={{ marginTop: "10px" }}>
       {tools.map((tool) => (
         <li key={tool}>{tool}</li>
       ))}
     </ul>
 
-    <p className="repo-link">
+    <span>
+      <a href={link}>{link}</a>
+    </span>
+    <span>&nbsp;&bull;&nbsp;</span>
+    <span className="repo-link">
       {github ? <a href={github}>{github}</a> : "private repo"}
-    </p>
+    </span>
   </div>
 );
 

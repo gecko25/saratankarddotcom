@@ -7,7 +7,7 @@ const Portfolio: NextPage = () => {
     <section>
       <PortfolioItem
         title="tablethotels.com"
-        link="https://www.tablethotels.com/"
+        link="https://www.tablethotels.com"
         image={{
           src: "/tablethotels.gif",
           width: 400,
@@ -33,7 +33,7 @@ const Portfolio: NextPage = () => {
 
       <PortfolioItem
         title="fintive"
-        link="https://beta.fintive.com/"
+        link="https://beta.fintive.com"
         image={{
           src: "/fintive.png",
           width: 500,
@@ -53,7 +53,7 @@ const Portfolio: NextPage = () => {
 
       <PortfolioItem
         title="show me the music"
-        link="/showmethemusic.gif"
+        link="https://www.showmethemusic.co"
         image={{
           src: "/showmethemusic.gif",
           width: 500,
@@ -72,7 +72,10 @@ const Portfolio: NextPage = () => {
           A side project of mine connecting the songkick and spotify apis. The
           user can search for live music events and select artists to generate a
           spotify playlist with the artists most popular songs.
-          <i>Currently not in service</i>
+        </p>
+
+        <p>
+          <i>Note: Currently not fully in service in production aka buggy</i>
         </p>
         <p>Team size: 1 Frontend Engineer (me); 1 Designer</p>
       </PortfolioItem>
@@ -115,7 +118,7 @@ const Portfolio: NextPage = () => {
 
       <PortfolioItem
         title="fixme app"
-        link="http://fixmelathe.herokuapp.com/"
+        link="http://fixmelathe.herokuapp.com"
         image={{
           src: "/fixme.gif",
           width: 300,
