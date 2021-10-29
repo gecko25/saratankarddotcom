@@ -9,8 +9,14 @@ import styles from "./Header.module.scss";
 
 const Header: NextPage = () => {
   return (
-    <header className={styles.header}>
-      <Navbar className={styles.Navbar} bg="#1c1c36" expand="lg" variant="dark">
+    <header>
+      <Navbar
+        className={styles.Navbar}
+        bg="#1c1c36"
+        expand="lg"
+        variant="dark"
+        collapseOnSelect
+      >
         <Link href="/" passHref>
           <Navbar.Brand>
             <Image

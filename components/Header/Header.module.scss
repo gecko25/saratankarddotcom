@@ -1,6 +1,8 @@
 .navcontainer {
   width: 100%;
   margin: 10px 0 15px 0;
+  background-color: #1c1c36;
+  padding-bottom: 25px !important;
   @media #{$desktop} {
     justify-content: flex-end;
   }
@@ -11,7 +13,7 @@
     color: white !important;
   }
   @media #{$tablet}, #{$mobile} {
-    color: rgb(184, 184, 184) !important;
+    color: white !important;
     border-bottom: rgb(184, 184, 184, 0.3) 1px solid;
     width: 100%;
     padding-left: 5px !important;
@@ -23,8 +25,12 @@
   }
 }
 
+.Navbar .show {
+}
+
 .Navbar {
+  z-index: 5;
   * {
-    color: white;
+    color: white !important;
   }
 }

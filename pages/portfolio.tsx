@@ -43,7 +43,7 @@ const Portfolio: NextPage = () => {
         tools={["react", "typescript", "node.js", "jest/react-testing-library"]}
       >
         <p>
-          Worked on a team to build an app for banks that visualizes large
+          I worked on a team to build an app for banks that visualizes large
           amounts of data (read from spreadsheet) about a loan applicant. This
           aided banks in the loan approval process.
         </p>

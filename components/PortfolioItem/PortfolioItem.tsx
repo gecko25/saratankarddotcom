@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import styles from "./Footer.module.scss";
+import styles from "./PortfolioItem.module.scss";
 
 type Props = {
   title: string;
@@ -23,16 +23,9 @@ const PortfolioItem: NextPage<Props> = ({
   children,
   github,
 }) => (
-  <div style={{ margin: "50px 0" }}>
+  <div className={styles.container}>
     <h1>{title}</h1>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "left",
-        alignItems: "center",
-      }}
-    >
+    <div className={styles.body}>
       <a href={link} target="_blank" rel="noreferrer">
         <Image
           src={image.src}
@@ -42,7 +35,7 @@ const PortfolioItem: NextPage<Props> = ({
         />
       </a>
 
-      <div style={{ marginLeft: "20px" }}>{children}</div>
+      <div className={styles.copy}>{children}</div>
     </div>
 
     <ul>
@@ -51,7 +44,9 @@ const PortfolioItem: NextPage<Props> = ({
       ))}
     </ul>
 
-    <p>repo: {github ? <a href={github}>{github}</a> : "private"}</p>
+    <p className="repo-link">
+      {github ? <a href={github}>{github}</a> : "private repo"}
+    </p>
   </div>
 );
 

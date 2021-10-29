@@ -1,0 +1,31 @@
+.container {
+  margin: 50px 0;
+  @media #{$mobile} {
+    flex-direction: column;
+  }
+}
+.body {
+  display: flex;
+
+  @media #{$desktop}, #{$tablet} {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+  }
+  @media #{$mobile} {
+    flex-direction: column;
+  }
+}
+
+.copy {
+  @media #{$desktop}, #{$tablet} {
+    margin-left: 20px;
+  }
+  @media #{$mobile} {
+    margin-top: 20px;
+  }
+}
+
+.repo-link {
+  overflow-wrap: break-word;
+}
