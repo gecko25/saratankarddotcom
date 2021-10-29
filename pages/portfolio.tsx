@@ -10,7 +10,7 @@ const Portfolio: NextPage = () => {
         link="https://www.tablethotels.com/"
         image={{
           src: "/tablethotels.gif",
-          width: 500,
+          width: 400,
           height: 300,
           alt: "Tablet Hotels Preview",
         }}
@@ -18,11 +18,16 @@ const Portfolio: NextPage = () => {
       >
         <p>
           I currently am employed at{" "}
-          <a href="https://www.tablethotels.com">Tablet Hotels</a> where I led a
-          team to move the legacy frontend codebase to React. While migrating, I
-          also was responsible for releasing various site features.
+          <a href="https://www.tablethotels.com">Tablet Hotels</a> (a partner of
+          Michelin) &mdash; A website for booking luxury and boutique hotels.
         </p>
 
+        <p>
+          I led our front end team to move the legacy frontend codebase to
+          React. We finished the migration in summer 2021.
+        </p>
+
+        <p>Now we continue to release various site features to engage users</p>
         <p>Team size: 3 Frontend Engineers; 10 Total engineers</p>
       </PortfolioItem>
 
@@ -53,9 +58,15 @@ const Portfolio: NextPage = () => {
           src: "/showmethemusic.gif",
           width: 500,
           height: 300,
-          alt: "Tablet Hotels Preview",
+          alt: "Show me the Music Preview",
         }}
-        tools={["next.js/vercel", "node.js", "spotify & songkick api"]}
+        tools={[
+          "next.js/vercel",
+          "node.js",
+          "mongodb",
+          "spotify & songkick api",
+        ]}
+        github="https://github.com/gecko25/showmethemusic"
       >
         <p>
           A side project of mine connecting the songkick and spotify apis. The
@@ -71,11 +82,12 @@ const Portfolio: NextPage = () => {
         link="https://dankport.saratankard.vercel.app"
         image={{
           src: "/dankport.gif",
-          width: 400,
+          width: 500,
           height: 300,
-          alt: "Tablet Hotels Preview",
+          alt: "Dankport Preview",
         }}
         tools={["next.js/vercel", "node.js", "snipcart api"]}
+        github="https://github.com/gecko25/dankport"
       >
         <p>
           Side project of mine and a friend to produce a prototype for a
@@ -99,6 +111,24 @@ const Portfolio: NextPage = () => {
       >
         <p>I built this website too.</p>
         <p>Team size: Me</p>
+      </PortfolioItem>
+
+      <PortfolioItem
+        title="fixme app"
+        link="http://fixmelathe.herokuapp.com/"
+        image={{
+          src: "/fixme.gif",
+          width: 300,
+          height: 200,
+          alt: "Fix me Preview",
+        }}
+        tools={["angular1", "infermedia API", "heroku"]}
+        github="https://github.com/gecko25/fixme"
+      >
+        <p>
+          I built this app to as a tool for users the enter their medical
+          symptons and self diagnose
+        </p>
       </PortfolioItem>
     </section>
   );
