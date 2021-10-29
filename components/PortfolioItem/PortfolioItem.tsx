@@ -46,11 +46,11 @@ const PortfolioItem: NextPage<Props> = ({
       ))}
     </ul>
 
-    <span>
+    <span className={styles.links}>
       <a href={link}>{link}</a>
     </span>
     <span>&nbsp;&bull;&nbsp;</span>
-    <span className="repo-link">
+    <span className={styles.links}>
       {github ? <a href={github}>{github}</a> : "private repo"}
     </span>
   </div>
