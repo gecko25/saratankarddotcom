@@ -21,7 +21,9 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+ul,
+li {
   color: white;
 }
 
@@ -32,17 +34,13 @@ h6 {
 a:hover,
 a:focus,
 a:active {
+  color: inherit;
   text-decoration: underline;
 }
 
 main {
   max-width: 1000px;
   margin: auto;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
 }
 
 main p {
