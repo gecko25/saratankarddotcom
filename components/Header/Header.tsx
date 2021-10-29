@@ -31,6 +31,9 @@ const Header: NextPage = () => {
             <Link href="/about" passHref>
               <Nav.Link>About Me</Nav.Link>
             </Link>
+            <Link href="/contact" passHref>
+              <Nav.Link>Contact</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

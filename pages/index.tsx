@@ -14,9 +14,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className={styles.index}>
-        <p>
-          In the process of moving my personal website over to next.js/vercel.
-        </p>
+        <p>My name is Sara.</p>
+        <p>I am a front end developer living in New York.</p>
+        <p>Just here to learn and have a good time.</p>
       </section>
     </Fragment>
   );
