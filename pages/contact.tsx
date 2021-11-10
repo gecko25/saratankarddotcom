@@ -7,7 +7,7 @@ const Contact: NextPage = () => {
         You can contact me via{" "}
         <a
           style={{ textDecoration: "underline" }}
-          href="mailto: sara@saratankard.com"
+          href="mailto: sara.tankard@gmail.com"
         >
           email
         </a>

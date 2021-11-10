@@ -36,3 +36,8 @@ To deploy to production, you can deploy using two methods:
 ```bash
 now --prod
 ```
+
+## Configuration
+
+You can see the various eslint and prettify configutation in the next.config.ts.
+The app is configured to prettify on commit
