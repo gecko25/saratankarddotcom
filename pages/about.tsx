@@ -18,7 +18,10 @@ const AboutMe: NextPage = () => {
         I now share time between New York and El Salvador (where my husband is
         from) in El Tunco and El Zonte (bitcoin beach).
       </p>
-      <p>I&apos;m interested in blockchain, bitcoin, and data rights.</p>
+      <p>
+        I&apos;m interested in small business empowerment, the environment, and
+        data rights.
+      </p>
     </section>
   );
 };

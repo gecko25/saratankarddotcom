@@ -53,7 +53,7 @@ const Portfolio: NextPage = () => {
 
       <PortfolioItem
         title="show me the music"
-        link="https://www.showmethemusic.co"
+        link="https://www.showmemusic.live"
         image={{
           src: "/showmethemusic.gif",
           width: 500,
